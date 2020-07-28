@@ -1,0 +1,45 @@
+<div>
+  <button>
+    <label for="file{{sectionNumber}}{{sectionPosition}}">Загрузить изображение</label>
+  </button>
+  <input type="file" id="file{{sectionNumber}}{{sectionPosition}}" accept="image/*"
+    (change)="onSelectFile($event)">
+
+  <small class="validate-message--error" 
+  *ngIf="form.get('src').invalid && form.get('src').errors.required">
+    Необходимо загрузить картинку
+  </small> 
+
+</div>
+
+<form
+  [formGroup] = form
+  (ngSubmit)="submit()"
+>
+<input type="hidden" formControlName="src">
+  <div class='img-box'>
+    <img 
+      [ngClass]="{'left-of-right-position': sectionPosition == 'left' || sectionPosition == 'right',
+                  'center-position': sectionPosition == 'center' }"
+      [lazyLoad]="sectionData?.getPicture().src?.toString()">
+  </div>
+  
+  <div>
+    <span>Описание к изображению</span>
+    <textarea formControlName="description"></textarea>
+  
+    <ng-container  *ngIf="form.get('description').invalid && 
+    form.get('description').touched"
+    >        
+      <small class="validate-message--error" 
+      *ngIf="form.get('description').errors.maxlength">
+      Максимальная длина {{form.get('description').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('description').errors.maxlength.actualLength}} символов
+      </small>
+    </ng-container>
+
+  </div>
+  
+  <input type="submit" [disabled]="form.invalid" value="Сохранить">
+</form>
+
+<button (click)="delete()">Удалить подсекцию</button>

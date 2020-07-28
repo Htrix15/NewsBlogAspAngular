@@ -1,0 +1,14 @@
+<header>
+    <a class = "head-links-main no-text-decoration" [routerLink]="['']" [queryParams]="{rest: true}"> 
+        мегоблогоновости
+    </a>
+    <a class = "head-links-cabinet no-text-decoration" [routerLink]="['/admin/logon']"> 
+        Кабинет
+    </a>
+</header>
+
+<div [ngClass]="{'message__error': typeMessageError, 'message__not-error': !typeMessageError}" *ngIf="chechMessage">
+    {{textMessage}}
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,49 @@
+<div class="inputHeadPictureArea" 
+  (mouseup)= "mouseUpInsudeWorkArea()"
+  (mousemove) = "mouseMoveInsudeWorkArea($event)"  
+>
+<div class="article">
+  <div class="control-buttons">
+    <button>
+      <label for="fileHead">Загрузить фоновое изображение</label>
+    </button>
+    <button (click)="setCenter()">Центрировать</button>
+    <button [disabled]="emptyNewImg" (click)="saveNewHeadPicture()">Сохранить</button>
+    <button (click)="close()">Закрыть</button>
+
+    <input type="file" id="fileHead" accept="image/*"
+    (change)="onSelectFile($event)"
+    >
+  </div>
+</div>
+
+  <div class="edit-box">
+    <div #workArea class="workArea" [ngStyle]="{'border-width':styleWorkAreaBorderSize}">
+      <div #borderNewImg 
+        [ngStyle]="{'border-width': styleNewImgBorderSize,
+                    'width': styleWidthNewImg, 
+                    'height': styleHeightNewImg, 
+                    'left': styleBorderNewImgLeft, 
+                    'top': styleBorderNewImgTop}" 
+        class = "workArea__borderNewImg">
+      </div>
+      <canvas #myImg class= "workArea__mainCanvas" 
+        (mousedown) = "mouseDownOnCanvas($event)"
+        (mouseup) = "mouseUpOnCanvas()"
+        (mousemove) = "mouseMoveOnCanvas($event)"
+      ></canvas>
+
+      <div #sizers class= "sizers"
+      (mousedown)= "mouseDownOnSizer($event)">
+        <div #sizerLeftTop [ngStyle]="{'width':styleSizerSise, 'height':styleSizerSise}" class ='sizers__sizer'></div>
+        <div #sizerRightTop [ngStyle]="{'width':styleSizerSise, 'height':styleSizerSise}" class ='sizers__sizer'></div>
+        <div #sizerLeftBottom [ngStyle]="{'width':styleSizerSise, 'height':styleSizerSise}" class ='sizers__sizer'></div>
+        <div #sizerRightBottom [ngStyle]="{'width':styleSizerSise, 'height':styleSizerSise}" class ='sizers__sizer'></div>
+      </div>
+
+    </div>
+
+    <canvas #newImg class= "newImgCanvas" [ngStyle]="{'width':styleWidthNewImg, 'height':styleHeightNewImg}"></canvas>
+  </div>
+
+</div>

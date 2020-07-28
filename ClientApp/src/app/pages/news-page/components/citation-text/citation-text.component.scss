@@ -1,0 +1,19 @@
+@import "../../../../../assets/style/colors.scss";
+@import "../../../../../assets/style/sizes";
+
+article{
+    padding: $sPadding;
+    background-color: $cLite;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+    font-style: italic;
+}
+.artilce{
+    &__text{
+        text-align: justify;
+        margin: $sPadding 0;
+    }
+    &__author{
+        text-align: end;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,31 @@
+@import "../../../assets/style/colors";
+@import "../../../assets/style/sizes";
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.articles-box{
+    border: 1px solid $cDark;
+    max-height: $sMaxScrollAreaHeight;
+    overflow-y:  scroll;
+    &__article{
+        border: 1px solid $cMiddle;
+        padding: $sMinPadding;
+        margin: $sMinPadding $sMinPadding;
+        display: flex;
+        cursor: pointer;
+        &__text{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        img{
+            width: $sMaxArticleWidthHeadPictureMinWidth;
+            height: $sMaxArticleWidthHeadPictureMinHeight;
+            margin-right: $sMinPadding;
+            border: 1px solid $cDark;
+        }
+    }
+}

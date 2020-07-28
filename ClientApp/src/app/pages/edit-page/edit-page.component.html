@@ -1,0 +1,288 @@
+<div class = "header-margin"></div>
+
+<ng-container *ngIf="loadHeadData">
+
+  <app-input-head-picture  
+    *ngIf="showInputHeadPictureArea" 
+    [srcHeadPicture] = article?.srcHeadPicture?.toString()
+    (closeEditHeadPicture) ="showInputHeadPictureArea = false"
+    (fileNewHeadPicture) = "updateFileHeadPicture($event)"
+    (srcNewHeadPicture) = "updateSrcHeadPicture($event)"
+  ></app-input-head-picture>
+
+  <div class="article">
+    <div class="head-edit">
+
+      <div class="edit-picture">
+        <img [lazyLoad]=article?.srcHeadPicture?.toString()>
+        <button (click)="showInputHeadPictureArea = !showInputHeadPictureArea">Задать обложку</button>
+        <small class="validate-message--error" 
+        *ngIf="form.get('src').invalid && form.get('src').errors.required">
+          Необходимо задать обложку
+        </small> 
+      </div>
+    
+      <form [formGroup] = form  (ngSubmit)="submitArticleHead()"> 
+
+          <input type="hidden" formControlName="src">
+          
+          <div>
+            <span>Заголовок:</span>
+            <input type="text" formControlName="head">
+
+            <ng-container *ngIf="form.get('head').invalid && form.get('head').touched">        
+              <small class="validate-message--error" 
+              *ngIf="form.get('head').errors.emptyText">
+              Заголовок не может быть пустым
+              </small> 
+              <small class="validate-message--error" 
+              *ngIf="form.get('head').errors.maxlength">
+              Максимальная длина {{form.get('head').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('head').errors.maxlength.actualLength}} символов
+              </small>
+            </ng-container>
+
+          </div>
+
+          <div>
+            <span>Категория: </span>
+            <select formControlName="articleCategory"> 
+              <option *ngFor="let category of categories;" value={{category?.id}}>{{category.desc}}</option> 
+            </select> 
+          </div>
+
+          <div>
+            <span>Hot news:</span>
+            <input type="checkbox" formControlName="hotNews">
+          </div>
+
+          <div>
+            <span>Опубликованно</span>
+            <input type="checkbox" formControlName="published">
+          </div>
+
+          <div>
+
+          <span>Краткое содержание:</span>
+          <textarea formControlName="shortDescription" class="scroller"></textarea>
+
+          <ng-container  *ngIf="form.get('shortDescription').invalid && 
+            form.get('shortDescription').touched"
+          >        
+            <small class="validate-message--error" 
+            *ngIf="form.get('shortDescription').errors.emptyText">
+            Краткое содержание не может быть пустым
+            </small> 
+            <small class="validate-message--error" 
+            *ngIf="form.get('shortDescription').errors.maxlength">
+            Максимальная длина {{form.get('shortDescription').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('shortDescription').errors.maxlength.actualLength}} символов
+            </small>
+          </ng-container>
+
+          </div>
+          
+          <input type="submit" [disabled]="form.invalid" value="Сохранить шапку">
+          <input type="button" (click)="deleteArticle()" value="Удалить">
+      
+      </form>
+    </div>
+  </div>
+
+</ng-container>
+
+<div class="article">
+<div *ngFor="let section of article?.sections | keyvalue; let i = index " >
+
+  <div class="move-section">
+    <span>Переместить секцию:</span>
+    <button [disabled]="waitingMove || i == 0" (click)="moveSection(section.key, -1)">Выше</button>
+    <button [disabled]="waitingMove || i == article?.sections.size -1 " (click)="moveSection(section.key, 1)">Ниже</button>
+    <button [disabled]="waitingMove" (click)="deleteSection(section.key)">Удалить секцию</button>
+  </div>
+
+  <div class="box" *ngIf="section.value?.leftSectionType != undefined || section.value?.rightSectionType != undefined else centerIf">
+    
+    <div class="box-left" 
+      [ngSwitch]= "section.value?.leftSectionType"
+    >
+      <app-input-text *ngSwitchCase = "'text'" 
+        [sectionData] = section.value?.leftSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'left'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('left', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'left', section.key)"
+      >
+      </app-input-text>
+      <app-input-citation-text *ngSwitchCase = "'citation'" 
+        [sectionData] = section.value?.leftSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'left'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('left', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'left', section.key)"
+      >
+      </app-input-citation-text>
+      <app-input-picture *ngSwitchCase = "'picture'" 
+        [sectionData] = section.value?.leftSectionData 
+        [sectionNumber] = section.key
+        [sectionPosition] = "'left'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('left', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'left', section.key)"
+      >
+      </app-input-picture>
+      <app-input-slider *ngSwitchCase = "'slider'" 
+        [sectionData] = section.value?.leftSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'left'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('left', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'left', section.key)"
+      >
+      </app-input-slider>
+      <app-input-video *ngSwitchCase = "'video'" 
+        [sectionData] = section.value?.leftSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'left'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('left', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'left', section.key)"
+      >
+      </app-input-video>
+      <app-input-section-type *ngSwitchCase = "'startInput'" 
+        (addNewSubSection) ="addSubSection($event,'left', section.key)"
+      >
+      </app-input-section-type>
+      
+      <button *ngSwitchDefault (click) = "startInputSubSection(section.key, 'left')">Добавить подсекцию</button>
+    </div>
+
+    <div class="box-right" 
+      [ngSwitch]= "section.value?.rightSectionType"
+    >
+      <app-input-text *ngSwitchCase = "'text'" 
+        [sectionData] = section.value?.rightSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'right'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('right', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'right', section.key)"
+      >
+      </app-input-text>
+      <app-input-citation-text *ngSwitchCase = "'citation'" 
+        [sectionData] = section.value?.rightSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'right'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('right', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'right', section.key)"
+      >
+      </app-input-citation-text>
+      <app-input-picture *ngSwitchCase = "'picture'" 
+        [sectionData] = section.value?.rightSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'right'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('right', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'right', section.key)"
+      >
+      </app-input-picture>
+      <app-input-slider *ngSwitchCase = "'slider'" 
+        [sectionData] = section.value?.rightSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'right'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('right', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'right', section.key)"
+      >
+      </app-input-slider>
+      <app-input-video *ngSwitchCase = "'video'" 
+        [sectionData] = section.value?.rightSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'right'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('right', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'right', section.key)"
+      >
+      </app-input-video>
+      <app-input-section-type *ngSwitchCase = "'startInput'" 
+        (addNewSubSection) ="addSubSection($event,'right', section.key)"
+      >
+      </app-input-section-type>
+      
+      <button *ngSwitchDefault (click) = "startInputSubSection(section.key, 'right')">Добавить подсекцию</button>
+    
+    </div>
+
+  </div>
+
+  <ng-template #centerIf>
+    <div class="box-center" 
+      [ngSwitch]= "section.value?.centerSectionType"
+    >
+      <app-input-text *ngSwitchCase = "'text'" 
+        [sectionData] = section.value?.centerSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'center'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('center', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'center', section.key)"
+      >
+      </app-input-text>
+      <app-input-citation-text *ngSwitchCase = "'citation'" 
+        [sectionData] = section.value?.centerSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'center'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('center', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'center', section.key)"
+      >
+      </app-input-citation-text>
+      <app-input-picture *ngSwitchCase = "'picture'" 
+        [sectionData] = section.value?.centerSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'center'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('center', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'center', section.key)"
+      >
+      </app-input-picture>
+      <app-input-slider *ngSwitchCase = "'slider'" 
+        [sectionData] = section.value?.centerSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'center'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('center', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'center', section.key)"
+      >
+      </app-input-slider>
+      <app-input-video *ngSwitchCase = "'video'" 
+        [sectionData] = section.value?.centerSectionData
+        [sectionNumber] = section.key
+        [sectionPosition] = "'center'"
+        [articleId] = article.id
+        (delSubSection) ="delSubSection('center', section.key)"
+        (submitSubSection) = "updateSubSection($event, 'center', section.key)"
+      >
+      </app-input-video>
+
+      <app-input-section-type *ngSwitchCase = "'startInput'" 
+        (addNewSubSection) ="addSubSection($event,'center', section.key)"
+      >
+      </app-input-section-type>
+      
+      <div *ngSwitchDefault class="box-center-new-secton">
+        <span>Позиция новой подсекции: </span>
+        <button (click) = "startInputSubSection(section.key, 'left')">Слева</button>
+        <button (click) = "startInputSubSection(section.key, 'center')">По центру</button>
+        <button (click) = "startInputSubSection(section.key, 'right')">Справа</button>
+      </div>
+
+    </div>    
+  </ng-template>
+</div>
+
+<div class="box--center">
+  <button (click)="addArticleSection()">Добавить секцию</button>
+</div>
+</div>

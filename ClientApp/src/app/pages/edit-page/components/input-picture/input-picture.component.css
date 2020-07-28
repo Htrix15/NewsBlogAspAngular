@@ -1,0 +1,13 @@
+﻿.img-box {
+  display: flex;
+  min-width: 100%;
+  margin: 5px 0; }
+  .img-box img {
+    max-width: 100%;
+    border: 1px solid #1B1B1B; }
+
+.left-of-right-position {
+  max-height: 300px; }
+
+.center-position {
+  max-height: 500px; }

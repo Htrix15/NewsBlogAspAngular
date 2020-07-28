@@ -1,0 +1,53 @@
+<div class="article">   
+
+<div *ngFor="let form of categoriesForms.controls let iForm = index;">
+  <form class="section-text" 
+    [formGroup] = form 
+    (ngSubmit)="updateCategory(form, iForm)"
+  >
+    <span>Категория:</span>
+    <input type="hidden" formControlName="id">
+    <input type="text" formControlName="desc">
+    <input type="submit" [disabled]="form.invalid" value="Сохранить">
+    <input type="button" (click)="delCategoryStep1(form, iForm)" value="Начать удаление">
+  </form>
+
+  <ng-container  *ngIf="form.get('desc').invalid && 
+  form.get('desc').touched"
+  >        
+    <small class="validate-message--error" 
+    *ngIf="form.get('desc').errors.emptyText">
+    Текст не может быть пустым
+    </small> 
+    <small class="validate-message--error" 
+    *ngIf="form.get('desc').errors.maxlength">
+    Максимальная длина {{form.get('desc').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('desc').errors.maxlength.actualLength}} символов
+    </small>
+  </ng-container>
+
+</div>
+
+<div *ngIf='idDelCategories!=-1'>
+
+  <form     
+    [formGroup] = "swapCategoriesForms" 
+    (ngSubmit)="delCategoryStep2()"
+  > 
+  <span>Для удаления категории выберете на какую заменить удаляемую в существующих статьях</span>
+    <select formControlName = "idSwapCategory"> 
+      <ng-container *ngFor="let category of categories;" >
+        <option   
+          *ngIf='category.id!=idDelCategories'
+            [ngValue]="category"
+          >{{category.desc}}
+        </option> 
+      </ng-container>
+
+    </select> 
+    <input type="submit" value="Удалить категорию">
+  </form>
+</div>
+
+
+<button (click)="addCategory()">Новая категория</button>
+</div>

@@ -1,0 +1,31 @@
+<button (click)="setTextStyle('bold')">Жирный</button>
+<button (click)="setTextStyle('italic')">Курсив</button>
+<button (click)="setTextStyle('underline')">Подчеркнутый</button>
+<button (click)="setTextStyle('strikeThrough')">Зачеркнутый</button>
+
+<button (click)="setTextStyle('foreColor', '000000')">Черный</button>
+<button (click)="setTextStyle('foreColor', 'FFFFFF')">Белый</button>
+<button (click)="setTextStyle('foreColor', 'FF0000')">Красный</button>
+
+<button (click)="setTextStyle('justifyLeft')">По левому</button>
+<button (click)="setTextStyle('justifyRight')">По правому</button>
+<button (click)="setTextStyle('justifyCenter')">По центру</button>
+<button (click)="setTextStyle('justifyFull')">По ширине</button>
+
+<button (click)="setLink()">Ссылка</button>
+
+<button (click)="setTextStyle('removeFormat')">Сброс форматирования</button>
+
+<div class="input-box">
+    <div contenteditable="true" #textBox (input)="inputText($event.target.innerText)" class="input-box__text-box"> </div>
+
+    <div *ngIf="invalidText">
+        <small class="validate-message--error" 
+        >
+        Строка не должна быть пустая, и привышать максимальную длину {{maxTextLength}} символов, сейчас {{textLength}} символов
+        </small>
+    </div>
+</div>
+
+<button [disabled]="invalidText" (click)="submit()">Сохранить</button>
+<button (click)="delete()">Удалить подсекцию</button>

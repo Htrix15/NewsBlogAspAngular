@@ -1,0 +1,51 @@
+﻿.inputHeadPictureArea {
+  position: fixed;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+  background-color: white;
+  width: 100%;
+  height: 100%; }
+
+.control-buttons {
+  margin: 10px 70px;
+  text-align: center; }
+  .control-buttons button {
+    margin-right: 5px; }
+
+.edit-box {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  margin: 0 auto; }
+
+.workArea {
+  border: 3px dashed #353535;
+  min-width: 600px;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden; }
+  .workArea__borderNewImg {
+    position: absolute;
+    z-index: 5;
+    border: 1px solid #BF3D30;
+    box-sizing: border-box;
+    pointer-events: none; }
+  .workArea__mainCanvas {
+    position: absolute;
+    z-index: 1; }
+
+.newImgCanvas {
+  position: relative;
+  border: 2px dashed #353535; }
+
+.sizers {
+  position: absolute;
+  z-index: 10; }
+  .sizers__sizer {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 10;
+    border: 3px solid black;
+    background-color: white; }

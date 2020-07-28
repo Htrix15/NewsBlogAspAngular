@@ -1,0 +1,20 @@
+@import "../../../../../assets/style/colors.scss";
+@import "../../../../../assets/style/sizes";
+
+
+.img-box{
+    display: flex;
+    min-width: 100%;
+    margin: $sMinPadding 0;
+    img {
+        max-width: 100%;
+        border: 1px solid $cDark;
+    }
+}
+
+.left-of-right-position{
+    max-height: $sLeftRightPictureMaxHeight;
+}
+.center-position{
+    max-height: $sCenterPictureMaxHeight;
+}

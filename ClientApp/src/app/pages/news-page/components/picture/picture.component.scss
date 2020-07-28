@@ -1,0 +1,30 @@
+@import "../../../../../assets/style/colors.scss";
+@import "../../../../../assets/style/sizes";
+
+
+article{
+    background-color: white;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: $sPadding;
+}
+
+.img-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+        max-width: 100%;
+    }
+}
+
+.left-of-right-position{
+    max-height: $sLeftRightPictureMaxHeight;
+}
+.center-position{
+    max-height: $sCenterPictureMaxHeight;
+}

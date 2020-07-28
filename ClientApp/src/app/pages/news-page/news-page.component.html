@@ -1,0 +1,128 @@
+<div class = "header-margin"></div>
+
+<div class="article"> 
+
+  <section class = "article-head">
+
+    <div class = "article-head-img-block">
+      <img [lazyLoad] = "article?.srcHeadPicture?.toString()" alt ='Здесь могла быть картинка'>
+    </div>
+
+    <div class="article-head-text-block">
+      <div >
+        <h1>{{article?.head}}</h1>
+        <small>от {{article?.dateCreated | date:'dd MMMM yyyy':null:'ru' | titlecase}} г.</small>
+      </div>
+      <h3>{{article?.shortDescription}} </h3>
+    </div>
+
+  </section>
+
+
+
+  <div *ngFor="let section of article?.sections | keyvalue; let idx = index" >
+    <div class="box" *ngIf="section.value.leftSectionType != undefined || section.value.rightSectionType != undefined else centerIf">
+      <div class="box-left" 
+      [ngSwitch]= "section.value?.leftSectionType"
+      >
+        <app-text *ngSwitchCase = "'text'" 
+        [sectionData] = section.value?.leftSectionData
+        >
+        </app-text>
+        <app-citation-text *ngSwitchCase = "'citation'" 
+          [sectionData] = section.value?.leftSectionData
+        >
+        </app-citation-text>
+        <app-picture *ngSwitchCase = "'picture'" 
+          [sectionData] = section.value?.leftSectionData
+          [sectionPosition] = "'left'"
+        >
+        </app-picture>
+        <app-slider *ngSwitchCase = "'slider'" 
+          [sectionData] = section.value?.leftSectionData
+          [sectionPosition] = "'left'"
+        >
+        </app-slider>
+        <app-video *ngSwitchCase = "'video'" 
+          [sectionData] = section.value?.leftSectionData
+          [sectionPosition] = "'left'"
+        >
+        </app-video>
+        <p *ngSwitchDefault></p>
+      </div>
+      
+      <div class="box-right" 
+      [ngSwitch]= "section.value?.rightSectionType"
+      >
+        <app-text *ngSwitchCase = "'text'" 
+        [sectionData] = section.value?.rightSectionData
+        >
+        </app-text>
+        <app-citation-text *ngSwitchCase = "'citation'" 
+          [sectionData] = section.value?.rightSectionData
+        >
+        </app-citation-text>
+        <app-picture *ngSwitchCase = "'picture'" 
+          [sectionData] = section.value?.rightSectionData
+          [sectionPosition] = "'right'"
+        >
+        </app-picture>
+        <app-slider *ngSwitchCase = "'slider'" 
+          [sectionData] = section.value?.rightSectionData
+          [sectionPosition] = "'right'"
+        >
+        </app-slider>
+        <app-video *ngSwitchCase = "'video'" 
+          [sectionData] = section.value?.rightSectionData
+          [sectionPosition] = "'right'"
+        >
+        </app-video>
+        <p *ngSwitchDefault></p>
+      </div>
+
+    </div>
+
+    <ng-template #centerIf>
+      <div class="box-center" 
+        [ngSwitch]= "section.value?.centerSectionType"
+      >
+        <app-text *ngSwitchCase = "'text'" 
+        [sectionData] = section.value?.centerSectionData
+        >
+        </app-text>
+        <app-citation-text *ngSwitchCase = "'citation'" 
+          [sectionData] = section.value?.centerSectionData
+        >
+        </app-citation-text>
+        <app-picture *ngSwitchCase = "'picture'" 
+          [sectionData] = section.value?.centerSectionData
+          [sectionPosition] = "'center'"
+        >
+        </app-picture>
+        <app-slider *ngSwitchCase = "'slider'" 
+          [sectionData] = section.value?.centerSectionData
+          [sectionPosition] = "'center'"
+        >
+        </app-slider>
+        <app-video *ngSwitchCase = "'video'" 
+          [sectionData] = section.value?.centerSectionData
+          [sectionPosition] = "'center'"
+        >
+        </app-video>
+        <p *ngSwitchDefault></p>
+      </div>
+    </ng-template>
+
+  </div>
+  
+  <app-comments [articleId] = article.id></app-comments>
+
+</div>
+
+  <div class="edit-footer">
+    <a [routerLink]="['edit']" >Редактировать статью (оставлено для демонстрации редактора)</a>
+  </div>
+
+
+
+

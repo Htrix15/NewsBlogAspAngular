@@ -1,0 +1,1 @@
+﻿header{background-color:#1b1b1b;height:40px;display:flex;align-items:center;justify-content:space-between;position:fixed;left:0;top:0;z-index:100;width:100%;}header .head-links,header .head-links-main,header .head-links-cabinet{margin:0 70px;}header .head-links-main{color:#e6e6e6;font-size:25px;text-transform:uppercase;}header .head-links-cabinet{color:#1b1b1b;}

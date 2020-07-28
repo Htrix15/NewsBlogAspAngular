@@ -1,0 +1,47 @@
+<form 
+  [formGroup] = form
+  (ngSubmit)="submit()"
+>
+  <div>
+    <span>Цитата</span>
+    <textarea formControlName="text"></textarea>
+
+    <ng-container  *ngIf="form.get('text').invalid && form.get('text').touched"
+    >        
+      <small class="validate-message--error" 
+      *ngIf="form.get('text').errors.emptyText">
+      Текст не может быть пустым
+      </small> 
+      <small class="validate-message--error" 
+      *ngIf="form.get('text').errors.maxlength">
+      Максимальная длина {{form.get('text').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('text').errors.maxlength.actualLength}} символов
+      </small>
+    </ng-container>
+
+  </div>
+
+  <div>
+    <span>Автор цитаты</span>
+    <input type="text" formControlName="author">
+    
+    <ng-container  *ngIf="form.get('author').invalid && 
+    form.get('author').touched"
+    >        
+      <small class="validate-message--error" 
+      *ngIf="form.get('author').errors.emptyText">
+      Автор не может быть пустым
+      </small> 
+      <small class="validate-message--error" 
+      *ngIf="form.get('author').errors.maxlength">
+      Максимальная длина {{form.get('author').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('author').errors.maxlength.actualLength}} символов
+      </small>
+    </ng-container>
+
+  </div>
+
+  <input type="submit" [disabled]="form.invalid" value="Сохранить">
+
+</form>
+
+<button (click)="delete()">Удалить подсекцию</button>
+

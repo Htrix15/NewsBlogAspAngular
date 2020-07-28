@@ -1,0 +1,41 @@
+<div class="slider-box"
+  [ngClass]="{'left-of-right-position': sectionPosition == 'left' || sectionPosition == 'right',
+  'center-position': sectionPosition == 'center' }"
+>
+
+  <button 
+    class="slide-button--left-position"
+    (click)="goLeft()">
+    <
+  </button>
+
+  <article>
+    <div class='img-box'
+    [ngClass]="{'slider-left-of-right-position': sectionPosition == 'left' || sectionPosition == 'right',
+    'slider-center-position': sectionPosition == 'center' }"
+    >
+      <img [lazyLoad]="pictures[indexShowImg].src?.toString()" alt="Здесь могла быть картинка">
+    </div>
+    
+    <small class="desc">{{pictures[indexShowImg]?.description}}</small>
+
+  </article>
+
+  <button 
+    class="slide-button--right-position"
+    (click)="goRight()">
+    >
+  </button>
+
+  <div class='img-buttons'>
+    <ng-container *ngFor="let picture of pictures; let idx = index">
+      <button
+       [ngClass]="{'img-buttons__button--activ': indexShowImg == idx}"
+        class="img-buttons__button" 
+        (click)="getPicture(idx)"
+      ></button>
+    </ng-container>
+    
+  </div>
+
+</div>

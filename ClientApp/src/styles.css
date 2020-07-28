@@ -1,0 +1,219 @@
+﻿h1 {
+  margin: 0;
+  font-size: 36px; }
+
+h2 {
+  margin: 0;
+  font-size: 21.6px; }
+
+h3 {
+  margin: 0;
+  font-size: 19.8px; }
+
+p {
+  margin: 0;
+  font-size: 18px; }
+
+small {
+  font-size: 14.4px; }
+
+.desc {
+  text-align: center;
+  font-style: italic;
+  min-height: 31.68px;
+  margin-top: 10px;
+  color: #353535;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; }
+
+a {
+  font-size: 18px; }
+
+.article {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 10px; }
+
+.validate-message--error {
+  color: #BF3D30; }
+
+.message, .message__error, .message__not-error {
+  position: fixed;
+  right: 0px;
+  top: 40px;
+  z-index: 5;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  width: 250px; }
+  .message__error {
+    background: #BF3D30;
+    color: #E6E6E6; }
+  .message__not-error {
+    background: #E6E6E6;
+    color: #353535; }
+
+.load-box {
+  background: #1B1B1B;
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-animation-name: puls;
+  animation-name: puls;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear; }
+  .load-box span {
+    position: absolute;
+    color: #E6E6E6;
+    font-size: 25px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+  .load-box-background {
+    position: fixed;
+    z-index: 3;
+    min-width: 100%;
+    min-height: 100%;
+    background: white; }
+
+@-webkit-keyframes puls {
+  0% {
+    width: 200px;
+    height: 200px;
+    background: #353535; }
+  50% {
+    width: 250px;
+    height: 250px;
+    background: #1B1B1B; }
+  100% {
+    width: 200px;
+    height: 200px;
+    background: #353535; } }
+
+@keyframes puls {
+  0% {
+    width: 200px;
+    height: 200px;
+    background: #353535; }
+  50% {
+    width: 250px;
+    height: 250px;
+    background: #1B1B1B; }
+  100% {
+    width: 200px;
+    height: 200px;
+    background: #353535; } }
+
+div:not(.not-fade-animate), p, span, input:not([type="file"]) {
+  -webkit-animation: fadein .3s;
+  animation: fadein .3s; }
+
+img.ng-lazyloaded {
+  -webkit-animation: fadein .5s;
+  animation: fadein .5s; }
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+.scroller {
+  scrollbar-color: #E6E6E6 #1B1B1B;
+  scrollbar-width: thin; }
+
+.scroller::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; }
+
+.scroller::-webkit-scrollbar-track-piece {
+  background-color: #1B1B1B; }
+
+.scroller::-webkit-scrollbar-thumb:horizontal,
+.scroller::-webkit-scrollbar-thumb:vertical {
+  background-color: #E6E6E6;
+  border-top: 1px solid #1B1B1B; }
+  .scroller::-webkit-scrollbar-thumb:horizontal:hover,
+  .scroller::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: #b3b3b3; }
+  .scroller::-webkit-scrollbar-thumb:horizontal:active,
+  .scroller::-webkit-scrollbar-thumb:vertical:active {
+    background-color: gray; }
+
+.header-margin {
+  height: 40px; }
+
+input[type=file] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  max-width: 10px; }
+
+button, input[type=submit], input[type=button] {
+  margin: 5px;
+  color: #E6E6E6;
+  background-color: #1B1B1B;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer; }
+  button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background-color: #353535; }
+  button:active, input[type=submit]:active, input[type=button]:active {
+    color: #353535;
+    background-color: #E6E6E6; }
+  button:disabled, input[type=submit]:disabled, input[type=button]:disabled {
+    border-color: #BF3D30;
+    background-color: #BF3D30; }
+
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0; }
+
+a.no-text-decoration {
+  text-decoration: none; }
+  a.no-text-decoration:hover {
+    text-decoration: underline; }
+
+form {
+  padding: 5px; }
+
+span {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 5px 0;
+  box-sizing: border-box; }
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  height: 100px;
+  border: 1px solid #353535; }
+
+input[type=text], input[type=password] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #353535; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif; }

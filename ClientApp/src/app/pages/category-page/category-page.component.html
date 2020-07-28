@@ -1,0 +1,31 @@
+<div class = "header-margin"></div>
+
+<div class="article">
+    <ng-container *ngIf="admin">
+        <div class="buttons">
+            <button (click)="showUnpublishedNews($event.target)">Неопубликованные статьи</button>
+            <button (click)="newNews()">Новая статья</button>
+        </div>
+    </ng-container>
+
+    <div class="articles-box scroller"
+    #scroller
+    checkSckrollPosition [scrollOrientation]="'vertical'"
+    (yesAdding) ="autoAddingArticles($event)" 
+    (scroll)="loadAdditionalArticles($event)">
+        <ng-container *ngFor="let article  of articles">    
+            <div (click)="goNews(article.id)" class="articles-box__article">
+                <img [lazyLoad] ="article.srcHeadPicture" alt="Здесь могла быть картинка">
+                <div class="articles-box__article__text">
+                    <div>
+                        <h2>{{article.head}}</h2>
+                        <small>от {{article?.dateCreated | date:'dd MMMM yyyy':null:'ru' | titlecase}} г.</small>
+                    </div>
+                    <p>{{article.shortDescription}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+

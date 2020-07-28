@@ -1,0 +1,61 @@
+@import "../../../assets/style/colors";
+@import "../../../assets/style/sizes";
+
+.head-edit{
+    border: 1px solid black;
+}
+.box--center{
+    display: flex;
+    justify-content: center;
+    padding: $sMinPadding;
+}
+.move-section{
+    width:50%;
+    text-align: center;
+    border: 1px solid $cDark;
+    border-bottom: 0px;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: $sMinPadding 0;
+    margin-top: 0px;
+    border: 1px solid $cDark;
+
+    &-center{
+        margin: $sMinPadding 0;
+        margin-top: 0px;
+        border: 2px dashed $cMiddle;
+        &-new-secton{
+            text-align: center;
+        }
+    }
+    &-left{  
+        border: 2px dashed $cMiddle;
+        margin-top: 0px;
+        width: 50%
+    }
+    &-right{
+        margin-left: $sMinPadding;
+        margin-top: 0px;
+        border: 2px dashed $cMiddle;
+        width: 50%
+    }
+}
+
+.edit{
+    &-picture{
+        img{
+            display: block;
+            margin: $sMinPadding;
+            width: $sMaxArticleWidthHeadPictureWidth;
+            height: $sMaxArticleWidthHeadPictureHeight;
+            border: 1px solid $cDark;
+        }
+    }
+}
+
+select{
+    width: max-content;
+}

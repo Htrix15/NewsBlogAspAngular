@@ -1,0 +1,32 @@
+$sHeader: 40px;
+$sHeaderMargin: $sHeader;
+
+$sMaxArticleWidth: 1000px;
+$sMaxScrollAreaHeight: 600px;
+$sCategoryWidth: 300px; 
+
+$sPadding: 10px; 
+$sMinPadding: $sPadding/2;
+
+
+$sBaseFontSize: 18px;
+$sHeadFontSize: 25px;
+
+$sMarginLeft: 70px;
+
+
+$sMaxArticleWidthHeadPictureWidth: 300px;
+$sMaxArticleWidthHeadPictureHeight: 200px;
+$sMaxArticleWidthHeadPictureMinWidth: $sMaxArticleWidthHeadPictureWidth/2;
+$sMaxArticleWidthHeadPictureMinHeight: $sMaxArticleWidthHeadPictureHeight/2;
+
+$sLeftRightPictureMaxHeight: 300px;
+$sCenterPictureMaxHeight: 500px;
+
+$sLeftRightSliderPictureMaxHeight: 250px;
+$sCenterSliderPictureMaxHeight: 450px;
+
+$sTextAreaHeight: 100px;
+
+$sStartAnimation:200px;
+$sEndAnimation:250px;

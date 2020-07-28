@@ -1,0 +1,23 @@
+﻿.buttons {
+  display: flex;
+  justify-content: space-between; }
+
+.articles-box {
+  border: 1px solid #1B1B1B;
+  max-height: 600px;
+  overflow-y: scroll; }
+  .articles-box__article {
+    border: 1px solid #353535;
+    padding: 5px;
+    margin: 5px 5px;
+    display: flex;
+    cursor: pointer; }
+    .articles-box__article__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+    .articles-box__article img {
+      width: 150px;
+      height: 100px;
+      margin-right: 5px;
+      border: 1px solid #1B1B1B; }

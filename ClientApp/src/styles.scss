@@ -1,0 +1,274 @@
+@import "assets/style/colors.scss";
+@import "assets/style/sizes";
+
+
+h1{
+    margin: 0;
+    font-size: $sBaseFontSize * 2;
+}
+h2{
+    margin: 0;
+    font-size: $sBaseFontSize * 1.2;
+}
+h3{
+    margin: 0;
+    font-size: $sBaseFontSize * 1.1;
+}
+p{
+    margin: 0;
+    font-size: $sBaseFontSize;
+}
+small{
+    font-size: $sBaseFontSize*0.8;
+}
+
+.desc{
+    text-align: center; 
+    font-style: italic;
+    min-height: 2.2 *$sBaseFontSize * 0.8;
+    margin-top: $sPadding;
+    color:$cMiddle;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+a{
+    font-size: $sBaseFontSize;
+}
+
+.article{
+    width:$sMaxArticleWidth;
+    margin: 0 auto;
+    padding: $sPadding;
+}
+
+.validate-message{
+    &--error{
+        color: $cError;
+    }
+}
+
+.message{
+    position: fixed;
+    right: 0px;
+    top: $sHeader;
+    z-index: 5;
+    padding:$sMinPadding;
+    margin: $sPadding;
+    text-align: center;
+    width: 250px;
+    &__error{
+      @extend .message;
+      background: $cError;
+      color: $cLite;
+    }
+    &__not-error{
+      @extend .message;
+      background: $cLite;
+      color: $cMiddle;
+    }
+}
+
+.load-box{
+    background:$cDark;
+    width: $sStartAnimation;
+    height: $sStartAnimation;
+    position: fixed;
+    z-index: 4;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-animation-name: puls;
+            animation-name: puls;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+  
+    span{
+      position: absolute;
+      color: $cLite;
+      font-size: $sHeadFontSize;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-background{
+        position: fixed;
+        z-index: 3;
+        min-width: 100%;
+        min-height: 100%;
+        background: white;
+    }
+}
+
+
+@-webkit-keyframes puls {
+    0% {
+        width: $sStartAnimation;
+        height:$sStartAnimation;
+        background: $cMiddle;
+    }
+    50% {
+        width: $sEndAnimation;
+        height: $sEndAnimation;
+        background: $cDark;
+    }
+    100% {
+        width: $sStartAnimation;
+        height: $sStartAnimation;
+        background: $cMiddle;
+    }
+}
+
+@keyframes puls {
+    0% {
+      width: $sStartAnimation;
+      height:$sStartAnimation;
+      background: $cMiddle;
+    }
+    50% {
+      width: $sEndAnimation;
+      height: $sEndAnimation;
+      background: $cDark;
+    }
+    100% {
+      width: $sStartAnimation;
+      height: $sStartAnimation;
+      background: $cMiddle;
+    }
+}
+
+
+div:not(.not-fade-animate),p,span,input:not([type="file"]) {
+    -webkit-animation: fadein .3s;
+            animation: fadein .3s;
+    }
+img.ng-lazyloaded { 
+    -webkit-animation: fadein .5s; 
+            animation: fadein .5s;
+    }
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; } 
+    }   
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; } 
+  }
+
+
+.scroller {
+    scrollbar-color: $cLite $cDark;
+    scrollbar-width: thin;
+  }
+
+.scroller::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.scroller::-webkit-scrollbar-track-piece  {
+    background-color: $cDark;
+}
+
+.scroller::-webkit-scrollbar-thumb:horizontal,
+.scroller::-webkit-scrollbar-thumb:vertical {
+    background-color: $cLite; 
+    border-top: 1px solid $cDark;
+    &:hover{
+        background-color: darken($cLite, 20%);
+    }
+    &:active{
+        background-color: darken($cLite, 40%);
+    }
+}
+
+
+.header-margin{
+    height: $sHeaderMargin;
+}
+
+input[type=file]{
+    position: absolute;
+    opacity:0;
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    max-width: 10px;
+}
+input[type=checkbox]{
+    margin-left: $sMinPadding;
+}
+
+
+
+button, input[type=submit], input[type=button]{
+    margin: $sMinPadding;
+    color: $cLite;
+    background-color: $cDark;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    &:hover{
+        background-color: $cMiddle;
+    }
+    &:active{
+        color: $cMiddle;
+        background-color: $cLite;
+    }
+    &:disabled{
+        border-color: $cError;
+        background-color: $cError;
+    }
+    label{
+        margin-bottom: 0;
+    }
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+a.no-text-decoration{
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+
+form{
+    padding: $sMinPadding;
+}
+
+span{
+    font-weight: bold;
+    font-size: $sBaseFontSize;
+    margin: $sMinPadding 0;
+    box-sizing: border-box; 
+}
+
+textarea{
+    width: 100%;
+    box-sizing: border-box; 
+    resize: none;
+    height: $sTextAreaHeight;
+    border: 1px solid $cMiddle;
+}
+
+input[type=text],input[type=password]{
+    width: 100%;
+    box-sizing: border-box; 
+    border: 1px solid $cMiddle;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

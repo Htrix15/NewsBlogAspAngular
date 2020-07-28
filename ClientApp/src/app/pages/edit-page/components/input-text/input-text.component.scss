@@ -1,0 +1,11 @@
+@import "../../../../../assets/style/colors.scss";
+@import "../../../../../assets/style/sizes";
+
+.input-box{
+    padding: $sMinPadding;
+    &__text-box{
+         border: 1px solid $cMiddle;
+    }
+}
+
+

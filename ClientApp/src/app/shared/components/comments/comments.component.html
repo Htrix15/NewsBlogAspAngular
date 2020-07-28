@@ -1,0 +1,82 @@
+<section class="comments">  
+  <ng-container *ngIf="noShowComment; else showCommentsBox">
+    <button class="comments-box-button-show" (click)="showComments()">Показать комментария</button>
+  </ng-container>
+
+  <ng-template #showCommentsBox>
+
+    <p class="comments-box-header">Комментария</p>
+
+    <div #scroller
+      class="comments-box scroller"
+      checkSckrollPosition [scrollOrientation]="'vertical'"
+      (yesAdding) ="autoAddingComments($event)" 
+      (scroll)="loadAdditionalComments($event)">
+
+        <div  *ngFor="let comment of comments; let i = index"
+        [ngClass]="{'comments-box__comment': !comment?.parentId, 'comments-box__comment--answer':comment?.parentId}" 
+        >
+          <small>#{{comment.id}} от {{comment.dateCreated  | date:'dd MMMM yyyy HH:mm':null:'ru' | titlecase}}</small>
+          <p><b>{{comment.authorName}}:</b> {{comment.text}}</p>
+          
+          <div class="buttons">
+            <div>
+            <button *ngIf="(comment.allowEdit && comment.countAnswer==0)" 
+            (click)="startInput(comment?.parent?.id, comment?.parent?.id, comment.id, comment.text)">Редактировать</button> 
+            <button *ngIf="comment.allowEdit && comment.countAnswer==0" 
+            (click)="delComment(comment.id, i)">Удалить</button> 
+            <button *ngIf="authAdmin" 
+            (click)="adminDelComment(comment.id, i, comment.parentId)">Админское удаление</button>
+            <button *ngIf="adminPages" 
+            (click)="goToArticle(comment.id)">К статье</button>
+            </div>        
+          <button (click)="showAnswer(comment.id, i, $event.target)" *ngIf="comment.countAnswer>0">Открыть обсуждение ({{comment.countAnswer}})</button> 
+          <button *ngIf="(authUser!=null || authAdmin) && !adminPages" (click)="startInput(comment.id, comment?.parentId, null, comment.authorName+', ')">Ответить</button>
+          </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="!adminPages">  
+      <ng-container *ngIf="authUser!=null || authAdmin; else auth">
+        <div class="answer-block">
+          <div class="answer-block__head">
+            <p><b>{{authUser?.firstName}}</b>, ваш комментарий</p>
+          </div>
+          <form 
+          [formGroup] = formNewComment
+          (ngSubmit) = "sendNewComment()">
+            <input type="hidden" formControlName = "commentId">
+            <input type="hidden" formControlName = "editType">
+            <input type="hidden" formControlName = "parentCommentId">
+            <input type="text" formControlName = "text">
+            <input type="submit" [disabled]="formNewComment.invalid" value="Отправить">
+          </form>
+        
+          <ng-container  *ngIf="formNewComment.get('text').invalid && 
+                                formNewComment.get('text').touched"
+          >        
+            <small class="validate-message--error" 
+            *ngIf="formNewComment.get('text').errors.emptyText">
+              Комментарий не может быть пустым
+            </small> 
+            <small class="validate-message--error" 
+            *ngIf="formNewComment.get('text').errors.maxlength">
+              Максимальная длина {{formNewComment.get('text').errors.maxlength.requiredLength}} символов, ваше сообщение {{formNewComment.get('text').errors.maxlength.actualLength}} символов
+            </small>
+
+          </ng-container>
+          
+        </div>
+      </ng-container>
+
+      <ng-template #auth>
+        <p>Для возможности комментировать зайдите через соц сеть:</p>
+        <div>
+          <button (click)="authForService('vk')">VK</button>
+          <button (click)="authForService('ya')">Yandex</button>
+          <button (click)="authForService('google')">Google</button>
+        </div>
+      </ng-template>
+    </ng-container>   
+  </ng-template>
+</section>

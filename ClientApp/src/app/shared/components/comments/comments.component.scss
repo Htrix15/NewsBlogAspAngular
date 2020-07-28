@@ -1,0 +1,50 @@
+@import "../../../../assets/style/colors";
+@import "../../../../assets/style/sizes";
+
+.comments{
+    margin: $sPadding $sMarginLeft;
+    padding: $sMinPadding;
+    text-align: center;
+    &-box{
+        max-height: $sMaxScrollAreaHeight;
+        border: 1px solid $cDark;
+        overflow-y:  scroll;
+        &-button-show{
+            background-color: $cDark;
+            text-align: center;
+            width: $sCategoryWidth;
+            color: $cLite;
+            font-size: $sBaseFontSize;
+        }
+        &-header{
+            background-color: $cDark;
+            text-align: center;
+            width: $sCategoryWidth;
+            color: $cLite;
+        }
+        &__comment{
+            margin: $sPadding;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            border: 1px solid $cDark;
+            padding: $sPadding;
+            &--answer{
+                @extend .comments-box__comment;
+                margin-left: $sPadding*3;
+            }
+        }
+    }
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.answer-block{
+    border: 1px solid $cDark;
+    &__head{
+        margin-top: $sPadding;
+    }
+}

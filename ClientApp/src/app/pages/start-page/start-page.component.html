@@ -1,0 +1,39 @@
+<div class = "header-margin"></div>
+
+<div class= "message__not-error" *ngIf="showReturn">
+  Вернуться к статье?
+  <button (click)="returnToArticle(true)">да</button>
+  <button (click)="returnToArticle(false)">нет</button>
+</div>
+
+<section> 
+  <div class = "news-set" *ngFor="let cat of categories" >
+
+    <div class = "news-set__category-link"> 
+      <a class="no-text-decoration" [routerLink]="['/category', cat?.id]" [state]="cat">{{cat?.desc}}</a>
+    </div>
+
+    <div class = "articles scroller"  
+      checkSckrollPosition [scrollOrientation]="'horizontal'"
+      (yesAdding) ="autoAddingArticles($event, cat?.id)" 
+      (scroll)="scrollAdditionalArticles($event, cat?.id)">
+
+      <ng-container *ngFor="let art of articles" > 
+        <div class = "articles__article" 
+          *ngIf="art?.category?.id === cat?.id"
+          [ngStyle]="{'background-image':' url(' + art?.srcHeadPicture?.toString() + ')'}"
+          (click)="routing(art?.id)"
+        > 
+          <h2>{{art.head}}</h2>
+          <!-- <small>от {{art?.dateCreated | date:'dd MMMM yyyy':null:'ru' | titlecase}} г.</small> -->
+          <p>{{art?.shortDescription}}</p>
+        </div>
+      </ng-container> 
+
+      <div class="articles__end" ></div>  
+
+    </div>
+
+  </div>
+</section>
+

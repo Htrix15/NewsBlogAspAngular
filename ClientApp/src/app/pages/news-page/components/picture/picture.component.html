@@ -1,0 +1,11 @@
+<article>
+  <div class='img-box'>
+    <img 
+      [ngClass]="{'left-of-right-position': sectionPosition == 'left' || sectionPosition == 'right',
+                'center-position': sectionPosition == 'center' }"
+      [lazyLoad] = "this.sectionData?.getPicture()?.src?.toString()" alt="Здесь могла быть картинка">
+  </div>
+
+  <small class="desc">{{this.sectionData?.getPicture()?.description}}</small>
+  
+</article>

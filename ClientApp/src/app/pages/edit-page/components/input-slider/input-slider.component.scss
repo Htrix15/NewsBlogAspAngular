@@ -1,0 +1,27 @@
+@import "../../../../../assets/style/colors.scss";
+@import "../../../../../assets/style/sizes";
+
+.edit-slider{
+    display: flex;
+    border-bottom: 1px solid $cMiddle;
+}
+
+.img-box{
+    width: 90%;
+    margin: $sMinPadding;
+
+    img {
+        max-width: 100%;
+        max-height: 100px;
+        border: 1px solid $cDark;
+    }
+}
+.section{
+    &-img{
+        text-align: center;
+        width: 250px;
+    }
+    &-text{
+        width: 100%;
+    }
+}

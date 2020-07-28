@@ -1,0 +1,22 @@
+﻿article {
+  background-color: white;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; }
+
+.img-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .img-box img {
+    max-width: 100%; }
+
+.left-of-right-position {
+  max-height: 300px; }
+
+.center-position {
+  max-height: 500px; }

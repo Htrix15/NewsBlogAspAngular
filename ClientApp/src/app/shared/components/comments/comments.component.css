@@ -1,0 +1,37 @@
+﻿.comments {
+  margin: 10px 70px;
+  padding: 5px;
+  text-align: center; }
+  .comments-box {
+    max-height: 600px;
+    border: 1px solid #1B1B1B;
+    overflow-y: scroll; }
+    .comments-box-button-show {
+      background-color: #1B1B1B;
+      text-align: center;
+      width: 300px;
+      color: #E6E6E6;
+      font-size: 18px; }
+    .comments-box-header {
+      background-color: #1B1B1B;
+      text-align: center;
+      width: 300px;
+      color: #E6E6E6; }
+    .comments-box__comment, .comments-box__comment--answer {
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      border: 1px solid #1B1B1B;
+      padding: 10px; }
+      .comments-box__comment--answer {
+        margin-left: 30px; }
+
+.buttons {
+  display: flex;
+  justify-content: space-between; }
+
+.answer-block {
+  border: 1px solid #1B1B1B; }
+  .answer-block__head {
+    margin-top: 10px; }

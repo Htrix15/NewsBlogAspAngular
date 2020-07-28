@@ -1,0 +1,17 @@
+@import "../../../assets/style/colors.scss";
+@import "../../../assets/style/sizes";
+
+.admin-navigation{
+    width: 100%;
+    height: $sHeader*0.8;
+    display: flex;
+    background-color: $cMiddle;
+    align-items:center;
+    justify-content: space-evenly;
+    a{
+        color: $cLite;
+    }
+    a.router-link-active{
+        color: $cDark;
+    }
+}

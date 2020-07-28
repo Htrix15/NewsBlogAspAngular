@@ -1,0 +1,44 @@
+<div class = "edit-slider" *ngFor="let form of forms.controls let idx = index;">
+
+  <div class="section-img">
+    <button>
+      <label for="file{{sectionNumber}}{{sectionPosition}}{{idx}}">Загрузить изображение</label>
+    </button>
+    <div class='img-box'>
+      <img [lazyLoad]=sectionData?.getPictures().pictures[idx]?.src?.toString()>
+    </div>
+    <input type="file" id="file{{sectionNumber}}{{sectionPosition}}{{idx}}" accept="image/*"
+      (change)="onSelectFile($event, idx)"
+    >
+  </div>
+  
+  <form class="section-text" [formGroup] = form>
+    <span>Описание к изображению</span>
+    <input type="hidden" formControlName="src">
+    <input type="text" formControlName="description">
+    
+    <div>
+      <small class="validate-message--error" 
+      *ngIf="form.get('src').invalid &&  form.get('src').errors.required">
+        Необходимо загрузить картинку
+      </small> 
+
+      <small class="validate-message--error" 
+      *ngIf="form.get('description').invalid && form.get('description').touched && form.get('description').errors.maxlength">
+      Максимальная длина {{form.get('description').errors.maxlength.requiredLength}} символов, ваше сообщение {{form.get('description').errors.maxlength.actualLength}} символов
+      </small>
+    </div>
+
+    <input type="button" *ngIf="idx!=0 && idx!=1" (click)="delSliderSection(idx)" value="Удалить">
+
+  </form>
+
+</div>
+
+<button [disabled]="blockAddSlideElements" (click)="addSliderSection()">Добавить новое изображение</button>
+<button [disabled]="forms.invalid" (click)="submit()">Сохранить слайдер</button>
+<button (click)="delete()">Удалить слайдер</button>
+
+
+
+
